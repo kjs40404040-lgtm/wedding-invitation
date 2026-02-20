@@ -79,12 +79,15 @@
                 opacity: 0;
                 transform: translateY(-20px) rotate(0deg) scale(0.5);
             }
+
             10% {
                 opacity: 0.8;
             }
+
             90% {
                 opacity: 0.4;
             }
+
             100% {
                 opacity: 0;
                 transform: translateY(100vh) rotate(360deg) scale(0.2);
@@ -116,8 +119,13 @@
         }
 
         @keyframes heroZoom {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.08); }
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.08);
+            }
         }
 
         .hero-overlay {
@@ -141,13 +149,20 @@
         .bokeh-circle {
             position: absolute;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(201,169,110,0.15), transparent 70%);
+            background: radial-gradient(circle, rgba(201, 169, 110, 0.15), transparent 70%);
             animation: bokehPulse 4s ease-in-out infinite alternate;
         }
 
         @keyframes bokehPulse {
-            0% { opacity: 0.3; transform: scale(1); }
-            100% { opacity: 0.7; transform: scale(1.2); }
+            0% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0.7;
+                transform: scale(1.2);
+            }
         }
 
         .hero-content {
@@ -164,7 +179,7 @@
             letter-spacing: 2px;
             color: var(--gold-light);
             margin-bottom: 6px;
-            text-shadow: 0 0 20px rgba(201,169,110,0.3);
+            text-shadow: 0 0 20px rgba(201, 169, 110, 0.3);
         }
 
         .hero-divider {
@@ -194,8 +209,15 @@
         }
 
         @keyframes diamondPulse {
-            0%, 100% { box-shadow: 0 0 4px rgba(201,169,110,0.3); }
-            50% { box-shadow: 0 0 12px rgba(201,169,110,0.6); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 4px rgba(201, 169, 110, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 12px rgba(201, 169, 110, 0.6);
+            }
         }
 
         .hero-names {
@@ -211,13 +233,21 @@
             text-shadow: none;
             margin-bottom: 2px;
             letter-spacing: 3px;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
         }
 
         @keyframes goldShimmerText {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .hero-ampersand {
@@ -226,7 +256,7 @@
             font-size: clamp(20px, 5vw, 32px);
             display: block;
             margin: 0;
-            text-shadow: 0 0 15px rgba(201,169,110,0.4);
+            text-shadow: 0 0 15px rgba(201, 169, 110, 0.4);
         }
 
         .hero-date {
@@ -407,8 +437,14 @@
             opacity: 0.2;
         }
 
-        .invitation-floral-left { left: 0; }
-        .invitation-floral-right { right: 0; transform: translateY(-50%) scaleX(-1); }
+        .invitation-floral-left {
+            left: 0;
+        }
+
+        .invitation-floral-right {
+            right: 0;
+            transform: translateY(-50%) scaleX(-1);
+        }
 
         /* ─── PHOTO GALLERY ─── */
         .gallery-section {
@@ -476,7 +512,7 @@
             background: var(--gold);
             width: 24px;
             border-radius: 3px;
-            box-shadow: 0 0 8px rgba(201,169,110,0.4);
+            box-shadow: 0 0 8px rgba(201, 169, 110, 0.4);
         }
 
         .gallery-grid {
@@ -510,7 +546,7 @@
             align-items: center;
             justify-content: center;
             background: rgba(92, 61, 46, 0.0);
-            color: rgba(255,255,255,0);
+            color: rgba(255, 255, 255, 0);
             font-size: 22px;
             transition: all 0.4s ease;
             pointer-events: none;
@@ -525,7 +561,7 @@
         .gallery-thumb:hover::after,
         .gallery-thumb:active::after {
             background: rgba(92, 61, 46, 0.25);
-            color: rgba(255,255,255,0.9);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         /* ─── LIGHTBOX ─── */
@@ -546,8 +582,13 @@
         }
 
         @keyframes lbFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .lightbox img {
@@ -559,8 +600,15 @@
         }
 
         @keyframes lbZoomIn {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .lightbox-close {
@@ -594,8 +642,13 @@
             transition: background 0.2s;
         }
 
-        .lightbox-prev { left: 10px; }
-        .lightbox-next { right: 10px; }
+        .lightbox-prev {
+            left: 10px;
+        }
+
+        .lightbox-next {
+            right: 10px;
+        }
 
         .lightbox-prev:hover,
         .lightbox-next:hover {
@@ -682,28 +735,38 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent 30%,
-                rgba(255,255,255,0.15) 50%,
-                transparent 70%
-            );
+            background: linear-gradient(45deg,
+                    transparent 30%,
+                    rgba(255, 255, 255, 0.15) 50%,
+                    transparent 70%);
             animation: shimmerGlide 3s ease-in-out infinite;
         }
 
         @keyframes shimmerSlide {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         @keyframes shimmerGlide {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
         }
 
         .shimmer-btn:active {
             transform: scale(0.97);
-            box-shadow: 0 2px 12px rgba(201,169,110,0.3);
+            box-shadow: 0 2px 12px rgba(201, 169, 110, 0.3);
         }
 
         /* ─── HEART FLOAT (FOOTER) ─── */
@@ -721,12 +784,27 @@
             animation: heartBeat 1.5s ease-in-out infinite;
         }
 
-        .heart-float:nth-child(2) { animation-delay: 0.3s; font-size: 22px; }
-        .heart-float:nth-child(3) { animation-delay: 0.6s; }
+        .heart-float:nth-child(2) {
+            animation-delay: 0.3s;
+            font-size: 22px;
+        }
+
+        .heart-float:nth-child(3) {
+            animation-delay: 0.6s;
+        }
 
         @keyframes heartBeat {
-            0%, 100% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.15); opacity: 1; }
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: scale(1.15);
+                opacity: 1;
+            }
         }
 
         /* ─── FOOTER ─── */
@@ -756,6 +834,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -763,8 +842,15 @@
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(8px); }
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(8px);
+            }
         }
 
         .fade-in {
@@ -780,9 +866,17 @@
         }
 
         /* Stagger children animation */
-        .stagger-children .fade-in:nth-child(1) { transition-delay: 0s; }
-        .stagger-children .fade-in:nth-child(2) { transition-delay: 0.15s; }
-        .stagger-children .fade-in:nth-child(3) { transition-delay: 0.3s; }
+        .stagger-children .fade-in:nth-child(1) {
+            transition-delay: 0s;
+        }
+
+        .stagger-children .fade-in:nth-child(2) {
+            transition-delay: 0.15s;
+        }
+
+        .stagger-children .fade-in:nth-child(3) {
+            transition-delay: 0.3s;
+        }
 
         /* ─── NAMES COUPLE ─── */
         .names-couple {
@@ -829,7 +923,7 @@
             border-radius: 12px;
             padding: 24px;
             margin-top: 8px;
-            border: 1px solid rgba(201,169,110,0.15);
+            border: 1px solid rgba(201, 169, 110, 0.15);
         }
 
         /* ─── 음악 토글 버튼 ─── */
@@ -864,8 +958,15 @@
         }
 
         @keyframes pulse-music {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(193, 154, 107, 0.4); }
-            50% { box-shadow: 0 0 0 10px rgba(193, 154, 107, 0); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(193, 154, 107, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 10px rgba(193, 154, 107, 0);
+            }
         }
 
         /* ─── MUSIC VISUALIZER BARS ─── */
@@ -891,19 +992,270 @@
             animation: musicBarBounce 0.8s ease-in-out infinite alternate;
         }
 
-        .music-bar:nth-child(1) { height: 6px; animation-delay: 0s; }
-        .music-bar:nth-child(2) { height: 10px; animation-delay: 0.15s; }
-        .music-bar:nth-child(3) { height: 4px; animation-delay: 0.3s; }
-        .music-bar:nth-child(4) { height: 8px; animation-delay: 0.1s; }
+        .music-bar:nth-child(1) {
+            height: 6px;
+            animation-delay: 0s;
+        }
+
+        .music-bar:nth-child(2) {
+            height: 10px;
+            animation-delay: 0.15s;
+        }
+
+        .music-bar:nth-child(3) {
+            height: 4px;
+            animation-delay: 0.3s;
+        }
+
+        .music-bar:nth-child(4) {
+            height: 8px;
+            animation-delay: 0.1s;
+        }
 
         @keyframes musicBarBounce {
-            0% { transform: scaleY(0.4); }
-            100% { transform: scaleY(1.2); }
+            0% {
+                transform: scaleY(0.4);
+            }
+
+            100% {
+                transform: scaleY(1.2);
+            }
+        }
+
+        /* ─── ENVELOPE OPENING ─── */
+        .envelope-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a110c 0%, #2a1a12 50%, #1a110c 100%);
+            transition: opacity 0.6s ease;
+        }
+
+        .envelope-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .envelope {
+            position: relative;
+            width: 280px;
+            height: 200px;
+            perspective: 800px;
+        }
+
+        .envelope-body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f5ebe0 0%, #ede0d0 100%);
+            border-radius: 4px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .envelope-body::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(135deg, #ede0d0 0%, #e5d5c0 100%);
+            border-top: 1px solid rgba(201, 169, 110, 0.2);
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(180deg, #f5ebe0 0%, #ede0d0 100%);
+            transform-origin: top center;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .envelope-flap::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(201, 169, 110, 0.08), rgba(201, 169, 110, 0.02));
+        }
+
+        .envelope.open .envelope-flap {
+            transform: rotateX(-180deg);
+        }
+
+        .envelope-seal {
+            position: absolute;
+            top: 42%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+            background: radial-gradient(circle, var(--gold) 0%, #b8944e 100%);
+            border-radius: 50%;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #fff;
+            box-shadow: 0 2px 12px rgba(201, 169, 110, 0.4);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .envelope.open .envelope-seal {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+
+        .envelope-letter {
+            position: absolute;
+            width: 86%;
+            height: 75%;
+            left: 7%;
+            bottom: 12%;
+            background: #fff;
+            border-radius: 3px;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .envelope.open .envelope-letter {
+            transform: translateY(-120px);
+        }
+
+        .envelope-letter-names {
+            font-family: 'Nanum Pen Script', cursive;
+            font-size: 22px;
+            color: var(--brown);
+            margin-bottom: 4px;
+        }
+
+        .envelope-letter-date {
+            font-size: 11px;
+            color: var(--gold);
+            letter-spacing: 2px;
+        }
+
+        .envelope-tap-hint {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Great Vibes', cursive;
+            font-size: 16px;
+            color: var(--gold-light);
+            animation: envelopePulse 2s ease-in-out infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes envelopePulse {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .envelope.open~.envelope-tap-hint {
+            opacity: 0;
+        }
+
+        /* ─── MASONRY GALLERY ─── */
+        .masonry-grid {
+            column-count: 2;
+            column-gap: 4px;
+            padding: 0 4px;
+            margin-top: 20px;
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 4px;
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            transform: translateZ(0);
+        }
+
+        .masonry-item img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .masonry-item::after {
+            content: '♥';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(92, 61, 46, 0.0);
+            color: rgba(255, 255, 255, 0);
+            font-size: 22px;
+            transition: all 0.4s ease;
+            pointer-events: none;
+        }
+
+        .masonry-item:active img {
+            transform: scale(1.06);
+            filter: brightness(0.8);
+        }
+
+        .masonry-item:active::after {
+            background: rgba(92, 61, 46, 0.25);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        @media (hover: hover) {
+            .masonry-item:hover img {
+                transform: scale(1.06);
+                filter: brightness(0.8);
+            }
+
+            .masonry-item:hover::after {
+                background: rgba(92, 61, 46, 0.25);
+                color: rgba(255, 255, 255, 0.9);
+            }
         }
     </style>
 </head>
 
 <body>
+
+    <!-- ───────── 봉투 오프닝 ───────── -->
+    <div class="envelope-overlay" id="envelopeOverlay">
+        <div class="envelope" id="envelope">
+            <div class="envelope-body"></div>
+            <div class="envelope-letter">
+                <div class="envelope-letter-names">종필 ♥ 연주</div>
+                <div class="envelope-letter-date">2026 · 03 · 07</div>
+            </div>
+            <div class="envelope-flap"></div>
+            <div class="envelope-seal">♥</div>
+        </div>
+        <div class="envelope-tap-hint">Tap to Open</div>
+    </div>
 
     <!-- ───────── 음악 ───────── -->
     <audio id="bgMusic" loop preload="auto">
@@ -979,12 +1331,12 @@
     <!-- ───────── 장식 디바이더 ───────── -->
     <div class="floral-divider">
         <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 5 C85 5 80 20 100 35 C120 20 115 5 100 5Z" fill="none" stroke="#c9a96e" stroke-width="0.8"/>
-            <path d="M70 18 Q85 10 100 20 Q115 10 130 18" fill="none" stroke="#c9a96e" stroke-width="0.6"/>
-            <circle cx="60" cy="20" r="2" fill="#c9a96e" opacity="0.5"/>
-            <circle cx="140" cy="20" r="2" fill="#c9a96e" opacity="0.5"/>
-            <path d="M40 20 L55 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.4"/>
-            <path d="M145 20 L160 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.4"/>
+            <path d="M100 5 C85 5 80 20 100 35 C120 20 115 5 100 5Z" fill="none" stroke="#c9a96e" stroke-width="0.8" />
+            <path d="M70 18 Q85 10 100 20 Q115 10 130 18" fill="none" stroke="#c9a96e" stroke-width="0.6" />
+            <circle cx="60" cy="20" r="2" fill="#c9a96e" opacity="0.5" />
+            <circle cx="140" cy="20" r="2" fill="#c9a96e" opacity="0.5" />
+            <path d="M40 20 L55 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.4" />
+            <path d="M145 20 L160 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.4" />
         </svg>
     </div>
 
@@ -1027,12 +1379,12 @@
     <!-- ───────── 장식 디바이더 ───────── -->
     <div class="floral-divider">
         <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M90 20 Q95 10 100 20 Q105 10 110 20" fill="none" stroke="#c9a96e" stroke-width="0.8"/>
-            <path d="M80 20 Q90 28 100 20 Q110 28 120 20" fill="none" stroke="#c9a96e" stroke-width="0.6"/>
-            <circle cx="75" cy="20" r="1.5" fill="#c9a96e" opacity="0.4"/>
-            <circle cx="125" cy="20" r="1.5" fill="#c9a96e" opacity="0.4"/>
-            <path d="M40 20 L70 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.3"/>
-            <path d="M130 20 L160 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.3"/>
+            <path d="M90 20 Q95 10 100 20 Q105 10 110 20" fill="none" stroke="#c9a96e" stroke-width="0.8" />
+            <path d="M80 20 Q90 28 100 20 Q110 28 120 20" fill="none" stroke="#c9a96e" stroke-width="0.6" />
+            <circle cx="75" cy="20" r="1.5" fill="#c9a96e" opacity="0.4" />
+            <circle cx="125" cy="20" r="1.5" fill="#c9a96e" opacity="0.4" />
+            <path d="M40 20 L70 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.3" />
+            <path d="M130 20 L160 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.3" />
         </svg>
     </div>
 
@@ -1067,38 +1419,38 @@
         </div>
         <div class="slideshow-nav" id="slideshowNav"></div>
 
-        <!-- 썸네일 그리드 -->
-        <div class="gallery-grid" style="margin-top:20px;">
-            <div class="gallery-thumb" onclick="openLightbox(0)"><img src="images/KakaoTalk_20260220_131313890_01.jpg"
-                    alt="" loading="lazy" /></div>
-            <div class="gallery-thumb" onclick="openLightbox(1)"><img src="images/KakaoTalk_20260220_131313890_02.jpg"
-                    alt="" loading="lazy" /></div>
-            <div class="gallery-thumb" onclick="openLightbox(2)"><img src="images/KakaoTalk_20260220_131313890_04.jpg"
-                    alt="" loading="lazy" /></div>
-            <div class="gallery-thumb" onclick="openLightbox(3)"><img src="images/KakaoTalk_20260220_131313890_05.jpg"
-                    alt="" loading="lazy" /></div>
-            <div class="gallery-thumb" onclick="openLightbox(4)"><img src="images/KakaoTalk_20260220_131313890_06.jpg"
-                    alt="" loading="lazy" /></div>
-            <div class="gallery-thumb" onclick="openLightbox(5)"><img src="images/KakaoTalk_20260220_131313890_07.jpg"
-                    alt="" loading="lazy" /></div>
-            <div class="gallery-thumb" onclick="openLightbox(6)"><img src="images/KakaoTalk_20260220_131323154.jpg"
-                    alt="" loading="lazy" /></div>
-            <div class="gallery-thumb" onclick="openLightbox(7)"><img src="images/KakaoTalk_20260220_131335604.jpg"
-                    alt="" loading="lazy" /></div>
-            <div class="gallery-thumb" onclick="openLightbox(8)"><img src="images/KakaoTalk_20260220_162103321.jpg"
-                    alt="" loading="lazy" /></div>
+        <!-- 매거진 스타일 메이슨리 그리드 -->
+        <div class="masonry-grid">
+            <div class="masonry-item" onclick="openLightbox(0)"><img src="images/KakaoTalk_20260220_131313890_01.jpg"
+                    alt="" loading="lazy" decoding="async" /></div>
+            <div class="masonry-item" onclick="openLightbox(1)"><img src="images/KakaoTalk_20260220_131313890_02.jpg"
+                    alt="" loading="lazy" decoding="async" /></div>
+            <div class="masonry-item" onclick="openLightbox(2)"><img src="images/KakaoTalk_20260220_131313890_04.jpg"
+                    alt="" loading="lazy" decoding="async" /></div>
+            <div class="masonry-item" onclick="openLightbox(3)"><img src="images/KakaoTalk_20260220_131313890_05.jpg"
+                    alt="" loading="lazy" decoding="async" /></div>
+            <div class="masonry-item" onclick="openLightbox(4)"><img src="images/KakaoTalk_20260220_131313890_06.jpg"
+                    alt="" loading="lazy" decoding="async" /></div>
+            <div class="masonry-item" onclick="openLightbox(5)"><img src="images/KakaoTalk_20260220_131313890_07.jpg"
+                    alt="" loading="lazy" decoding="async" /></div>
+            <div class="masonry-item" onclick="openLightbox(6)"><img src="images/KakaoTalk_20260220_131323154.jpg"
+                    alt="" loading="lazy" decoding="async" /></div>
+            <div class="masonry-item" onclick="openLightbox(7)"><img src="images/KakaoTalk_20260220_131335604.jpg"
+                    alt="" loading="lazy" decoding="async" /></div>
+            <div class="masonry-item" onclick="openLightbox(8)"><img src="images/KakaoTalk_20260220_162103321.jpg"
+                    alt="" loading="lazy" decoding="async" /></div>
         </div>
     </section>
 
     <!-- ───────── 장식 디바이더 ───────── -->
     <div class="floral-divider">
         <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 5 C85 5 80 20 100 35 C120 20 115 5 100 5Z" fill="none" stroke="#c9a96e" stroke-width="0.8"/>
-            <path d="M70 18 Q85 10 100 20 Q115 10 130 18" fill="none" stroke="#c9a96e" stroke-width="0.6"/>
-            <circle cx="60" cy="20" r="2" fill="#c9a96e" opacity="0.5"/>
-            <circle cx="140" cy="20" r="2" fill="#c9a96e" opacity="0.5"/>
-            <path d="M40 20 L55 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.4"/>
-            <path d="M145 20 L160 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.4"/>
+            <path d="M100 5 C85 5 80 20 100 35 C120 20 115 5 100 5Z" fill="none" stroke="#c9a96e" stroke-width="0.8" />
+            <path d="M70 18 Q85 10 100 20 Q115 10 130 18" fill="none" stroke="#c9a96e" stroke-width="0.6" />
+            <circle cx="60" cy="20" r="2" fill="#c9a96e" opacity="0.5" />
+            <circle cx="140" cy="20" r="2" fill="#c9a96e" opacity="0.5" />
+            <path d="M40 20 L55 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.4" />
+            <path d="M145 20 L160 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.4" />
         </svg>
     </div>
 
@@ -1116,8 +1468,8 @@
             <div class="info-title">장 소</div>
             <div class="info-value">셀레네 하우스 웨딩</div>
             <div class="info-sub">충청남도 천안시 동남구 배울1길 35</div>
-            <a href="https://map.kakao.com/link/map/셀레네 하우스 웨딩,36.8068,127.1519" target="_blank"
-                class="shimmer-btn">📍 카카오맵으로 보기</a>
+            <a href="https://map.kakao.com/link/map/셀레네 하우스 웨딩,36.8068,127.1519" target="_blank" class="shimmer-btn">📍
+                카카오맵으로 보기</a>
         </div>
         <div class="info-card fade-in" style="background:var(--cream);">
             <div class="info-title">오시는 길</div>
@@ -1133,12 +1485,12 @@
     <!-- ───────── 장식 디바이더 ───────── -->
     <div class="floral-divider">
         <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M90 20 Q95 10 100 20 Q105 10 110 20" fill="none" stroke="#c9a96e" stroke-width="0.8"/>
-            <path d="M80 20 Q90 28 100 20 Q110 28 120 20" fill="none" stroke="#c9a96e" stroke-width="0.6"/>
-            <circle cx="75" cy="20" r="1.5" fill="#c9a96e" opacity="0.4"/>
-            <circle cx="125" cy="20" r="1.5" fill="#c9a96e" opacity="0.4"/>
-            <path d="M40 20 L70 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.3"/>
-            <path d="M130 20 L160 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.3"/>
+            <path d="M90 20 Q95 10 100 20 Q105 10 110 20" fill="none" stroke="#c9a96e" stroke-width="0.8" />
+            <path d="M80 20 Q90 28 100 20 Q110 28 120 20" fill="none" stroke="#c9a96e" stroke-width="0.6" />
+            <circle cx="75" cy="20" r="1.5" fill="#c9a96e" opacity="0.4" />
+            <circle cx="125" cy="20" r="1.5" fill="#c9a96e" opacity="0.4" />
+            <path d="M40 20 L70 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.3" />
+            <path d="M130 20 L160 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.3" />
         </svg>
     </div>
 
@@ -1388,6 +1740,41 @@
                 ticking = true;
             }
         }, { passive: true });
+
+        /* ── 봉투 오프닝 애니메이션 ── */
+        const envelopeOverlay = document.getElementById('envelopeOverlay');
+        const envelope = document.getElementById('envelope');
+        let envelopeOpened = false;
+
+        // 스크롤 방지 (봉투 열려야 스크롤 가능)
+        document.body.style.overflow = 'hidden';
+
+        envelopeOverlay.addEventListener('click', () => {
+            if (!envelopeOpened) {
+                // 1단계: 봉투 뚜껑 열기
+                envelope.classList.add('open');
+                envelopeOpened = true;
+
+                // 2단계: 1.3초 뒤 봉투 전체 사라지기
+                setTimeout(() => {
+                    envelopeOverlay.classList.add('hidden');
+                    document.body.style.overflow = '';
+
+                    // 음악 자동 재생 시도
+                    if (!isMusicPlaying) {
+                        bgMusic.play().then(() => {
+                            isMusicPlaying = true;
+                            musicBtn.classList.add('playing');
+                        }).catch(() => { });
+                    }
+                }, 1300);
+
+                // 3단계: 완전 제거
+                setTimeout(() => {
+                    envelopeOverlay.remove();
+                }, 2000);
+            }
+        });
     </script>
 </body>
 
