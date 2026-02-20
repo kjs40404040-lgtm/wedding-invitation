@@ -21,7 +21,7 @@ import os
 
 # ── 설정 ──────────────────────────────────────
 # GitHub Pages URL (저장소 만든 후 이 값을 업데이트하세요)
-DEFAULT_URL = "https://kjs40404040.github.io/wedding-invitation"
+DEFAULT_URL = "https://kjs40404040-lgtm.github.io/wedding-invitation"
 
 url = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_URL
 
