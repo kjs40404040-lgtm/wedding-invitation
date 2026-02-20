@@ -225,18 +225,24 @@
             width: 100%;
             overflow: hidden;
             margin-bottom: 16px;
+            contain: layout style;
         }
 
         .slideshow-track {
             display: flex;
-            transition: transform 0.4s ease-out;
+            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             will-change: transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform: translate3d(0, 0, 0);
         }
 
         .slide {
             min-width: 100%;
             aspect-ratio: 4/5;
             overflow: hidden;
+            contain: layout paint;
+            backface-visibility: hidden;
         }
 
         .slide img {
@@ -244,6 +250,8 @@
             height: 100%;
             object-fit: cover;
             object-position: center top;
+            image-rendering: auto;
+            transform: translateZ(0);
         }
 
         .slideshow-nav {
@@ -538,10 +546,12 @@
         <p class="invitation-text">
             저희 두 사람이 사랑으로 하나가 되는<br />
             소중한 날을 마련하였습니다.<br /><br />
-            바쁘신 중에도 자리를 함께해 주셔서<br />
-            저희의 새 출발을 축복해 주시면<br />
+            예식은 가족과 친인척분들만 모시고<br />
+            비공개로 소규모로 진행하게 되었습니다.<br /><br />
+            직접 모시지 못하는 점 너그러이 양해 부탁드리며<br />
+            멀리서라도 축복해 주시면<br />
             더없는 기쁨이 되겠습니다.
-            <strong>— 종필 & 연주 올림 —</strong>
+            <strong>— 종필 &amp; 연주 올림 —</strong>
         </p>
         <br />
         <!-- 신랑·신부 이름 카드 -->
@@ -573,22 +583,29 @@
         <!-- 슬라이드쇼 -->
         <div class="slideshow-container">
             <div class="slideshow-track" id="slideshowTrack">
-                <div class="slide"><img src="images/KakaoTalk_20260220_131313890_01.jpg" alt="사진1" loading="eager" />
+                <div class="slide"><img src="images/KakaoTalk_20260220_131313890_01.jpg" alt="사진1" loading="eager"
+                        decoding="async" />
                 </div>
-                <div class="slide"><img src="images/KakaoTalk_20260220_131313890_02.jpg" alt="사진2" loading="lazy" />
+                <div class="slide"><img src="images/KakaoTalk_20260220_131313890_02.jpg" alt="사진2" loading="lazy"
+                        decoding="async" />
                 </div>
-                <div class="slide"><img src="images/KakaoTalk_20260220_131313890_03.jpg" alt="사진3" loading="lazy" />
+
+                <div class="slide"><img src="images/KakaoTalk_20260220_131313890_04.jpg" alt="사진4" loading="lazy"
+                        decoding="async" />
                 </div>
-                <div class="slide"><img src="images/KakaoTalk_20260220_131313890_04.jpg" alt="사진4" loading="lazy" />
+                <div class="slide"><img src="images/KakaoTalk_20260220_131313890_05.jpg" alt="사진5" loading="lazy"
+                        decoding="async" />
                 </div>
-                <div class="slide"><img src="images/KakaoTalk_20260220_131313890_05.jpg" alt="사진5" loading="lazy" />
+                <div class="slide"><img src="images/KakaoTalk_20260220_131313890_06.jpg" alt="사진6" loading="lazy"
+                        decoding="async" />
                 </div>
-                <div class="slide"><img src="images/KakaoTalk_20260220_131313890_06.jpg" alt="사진6" loading="lazy" />
+                <div class="slide"><img src="images/KakaoTalk_20260220_131313890_07.jpg" alt="사진7" loading="lazy"
+                        decoding="async" />
                 </div>
-                <div class="slide"><img src="images/KakaoTalk_20260220_131313890_07.jpg" alt="사진7" loading="lazy" />
-                </div>
-                <div class="slide"><img src="images/KakaoTalk_20260220_131323154.jpg" alt="사진8" loading="lazy" /></div>
-                <div class="slide"><img src="images/KakaoTalk_20260220_131335604.jpg" alt="사진9" loading="lazy" /></div>
+                <div class="slide"><img src="images/KakaoTalk_20260220_131323154.jpg" alt="사진8" loading="lazy"
+                        decoding="async" /></div>
+                <div class="slide"><img src="images/KakaoTalk_20260220_131335604.jpg" alt="사진9" loading="lazy"
+                        decoding="async" /></div>
             </div>
         </div>
         <div class="slideshow-nav" id="slideshowNav"></div>
@@ -599,19 +616,17 @@
                     alt="" /></div>
             <div class="gallery-thumb" onclick="openLightbox(1)"><img src="images/KakaoTalk_20260220_131313890_02.jpg"
                     alt="" /></div>
-            <div class="gallery-thumb" onclick="openLightbox(2)"><img src="images/KakaoTalk_20260220_131313890_03.jpg"
+            <div class="gallery-thumb" onclick="openLightbox(2)"><img src="images/KakaoTalk_20260220_131313890_04.jpg"
                     alt="" /></div>
-            <div class="gallery-thumb" onclick="openLightbox(3)"><img src="images/KakaoTalk_20260220_131313890_04.jpg"
+            <div class="gallery-thumb" onclick="openLightbox(3)"><img src="images/KakaoTalk_20260220_131313890_05.jpg"
                     alt="" /></div>
-            <div class="gallery-thumb" onclick="openLightbox(4)"><img src="images/KakaoTalk_20260220_131313890_05.jpg"
+            <div class="gallery-thumb" onclick="openLightbox(4)"><img src="images/KakaoTalk_20260220_131313890_06.jpg"
                     alt="" /></div>
-            <div class="gallery-thumb" onclick="openLightbox(5)"><img src="images/KakaoTalk_20260220_131313890_06.jpg"
+            <div class="gallery-thumb" onclick="openLightbox(5)"><img src="images/KakaoTalk_20260220_131313890_07.jpg"
                     alt="" /></div>
-            <div class="gallery-thumb" onclick="openLightbox(6)"><img src="images/KakaoTalk_20260220_131313890_07.jpg"
+            <div class="gallery-thumb" onclick="openLightbox(6)"><img src="images/KakaoTalk_20260220_131323154.jpg"
                     alt="" /></div>
-            <div class="gallery-thumb" onclick="openLightbox(7)"><img src="images/KakaoTalk_20260220_131323154.jpg"
-                    alt="" /></div>
-            <div class="gallery-thumb" onclick="openLightbox(8)"><img src="images/KakaoTalk_20260220_131335604.jpg"
+            <div class="gallery-thumb" onclick="openLightbox(7)"><img src="images/KakaoTalk_20260220_131335604.jpg"
                     alt="" /></div>
         </div>
     </section>
@@ -676,7 +691,7 @@
         const photos = [
             'images/KakaoTalk_20260220_131313890_01.jpg',
             'images/KakaoTalk_20260220_131313890_02.jpg',
-            'images/KakaoTalk_20260220_131313890_03.jpg',
+
             'images/KakaoTalk_20260220_131313890_04.jpg',
             'images/KakaoTalk_20260220_131313890_05.jpg',
             'images/KakaoTalk_20260220_131313890_06.jpg',
@@ -702,7 +717,7 @@
 
         function goSlide(n) {
             currentSlide = (n + photos.length) % photos.length;
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            track.style.transform = `translate3d(-${currentSlide * 100}%, 0, 0)`;
             document.querySelectorAll('.dot').forEach((d, i) => {
                 d.classList.toggle('active', i === currentSlide);
             });
