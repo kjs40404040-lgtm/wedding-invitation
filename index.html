@@ -16,12 +16,14 @@
             --cream: #fdf8f2;
             --gold: #c9a96e;
             --gold-light: #e8d5b0;
+            --gold-shimmer: #dfc68a;
             --brown: #5c3d2e;
             --brown-light: #8b6655;
             --rose: #d4a8a8;
             --rose-light: #f5e6e6;
             --text: #3a2e27;
             --text-light: #7a6a5a;
+            --blush: #f0ddd5;
         }
 
         * {
@@ -39,6 +41,54 @@
             color: var(--text);
             font-family: 'Noto Serif KR', serif;
             overflow-x: hidden;
+        }
+
+        /* ─── FLOATING PARTICLES ─── */
+        .particles-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 998;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            opacity: 0;
+            animation: floatDown linear infinite;
+        }
+
+        .particle-petal {
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle at 30% 30%, var(--rose-light), var(--rose));
+            border-radius: 50% 0 50% 50%;
+            transform: rotate(45deg);
+        }
+
+        .particle-sparkle {
+            width: 4px;
+            height: 4px;
+            background: var(--gold-shimmer);
+            border-radius: 50%;
+            box-shadow: 0 0 6px 2px rgba(201, 169, 110, 0.3);
+        }
+
+        @keyframes floatDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px) rotate(0deg) scale(0.5);
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(360deg) scale(0.2);
+            }
         }
 
         /* ─── HERO ─── */
@@ -62,6 +112,12 @@
             background-position: center top;
             opacity: 0.55;
             filter: saturate(0.8);
+            animation: heroZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
         }
 
         .hero-overlay {
@@ -74,6 +130,26 @@
                     rgba(20, 10, 5, 0.85) 100%);
         }
 
+        /* Hero bokeh glow */
+        .hero-bokeh {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bokeh-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201,169,110,0.15), transparent 70%);
+            animation: bokehPulse 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes bokehPulse {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.7; transform: scale(1.2); }
+        }
+
         .hero-content {
             position: relative;
             z-index: 2;
@@ -84,10 +160,11 @@
 
         .hero-subtitle {
             font-family: 'Great Vibes', cursive;
-            font-size: 16px;
+            font-size: 18px;
             letter-spacing: 2px;
             color: var(--gold-light);
             margin-bottom: 6px;
+            text-shadow: 0 0 20px rgba(201,169,110,0.3);
         }
 
         .hero-divider {
@@ -103,8 +180,8 @@
             content: '';
             flex: 1;
             height: 1px;
-            background: var(--gold);
-            max-width: 60px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            max-width: 80px;
             opacity: 0.7;
         }
 
@@ -113,30 +190,49 @@
             height: 6px;
             background: var(--gold);
             transform: rotate(45deg);
+            animation: diamondPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes diamondPulse {
+            0%, 100% { box-shadow: 0 0 4px rgba(201,169,110,0.3); }
+            50% { box-shadow: 0 0 12px rgba(201,169,110,0.6); }
         }
 
         .hero-names {
             font-family: 'Nanum Pen Script', cursive;
-            font-size: clamp(28px, 8vw, 48px);
-            color: #fff;
+            font-size: clamp(32px, 9vw, 52px);
+            background: linear-gradient(135deg, #fff 0%, var(--gold-light) 50%, #fff 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: goldShimmerText 4s ease infinite;
             line-height: 1.15;
-            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+            text-shadow: none;
             margin-bottom: 2px;
             letter-spacing: 3px;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+        }
+
+        @keyframes goldShimmerText {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .hero-ampersand {
             font-family: 'Great Vibes', cursive;
             color: var(--gold);
-            font-size: clamp(18px, 5vw, 30px);
+            font-size: clamp(20px, 5vw, 32px);
             display: block;
             margin: 0;
+            text-shadow: 0 0 15px rgba(201,169,110,0.4);
         }
 
         .hero-date {
             font-size: 13px;
             color: var(--gold-light);
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             margin-top: 10px;
         }
 
@@ -186,22 +282,110 @@
         .gold-line {
             width: 40px;
             height: 1px;
-            background: var(--gold);
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
             margin: 12px auto;
             opacity: 0.7;
+        }
+
+        /* ─── FLORAL SECTION DIVIDER ─── */
+        .floral-divider {
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floral-divider svg {
+            width: 180px;
+            height: 40px;
+            opacity: 0.35;
+        }
+
+        .floral-divider::before,
+        .floral-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-light));
+        }
+
+        .floral-divider::before {
+            right: calc(50% + 100px);
+            background: linear-gradient(90deg, transparent, var(--gold-light));
+        }
+
+        .floral-divider::after {
+            left: calc(50% + 100px);
+            background: linear-gradient(90deg, var(--gold-light), transparent);
+        }
+
+        /* ─── COUNTDOWN ─── */
+        .countdown-section {
+            text-align: center;
+            padding: 40px 24px;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--blush) 50%, var(--cream) 100%);
+        }
+
+        .countdown-label {
+            font-family: 'Great Vibes', cursive;
+            font-size: 22px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .countdown-grid {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+        }
+
+        .countdown-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 400;
+            color: var(--brown);
+            line-height: 1;
+            background: linear-gradient(180deg, var(--brown) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .countdown-unit {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-top: 6px;
+        }
+
+        .countdown-separator {
+            font-size: 28px;
+            color: var(--gold-light);
+            padding-top: 4px;
         }
 
         /* ─── INVITATION TEXT ─── */
         .invitation-section {
             text-align: center;
-            border-top: 1px solid var(--gold-light);
-            border-bottom: 1px solid var(--gold-light);
+            border-top: none;
+            border-bottom: none;
             padding: 60px 24px;
+            position: relative;
         }
 
         .invitation-text {
             font-size: 15px;
-            line-height: 2;
+            line-height: 2.2;
             color: var(--text-light);
         }
 
@@ -212,6 +396,19 @@
             font-size: 17px;
             font-weight: 600;
         }
+
+        /* Floral decoration beside invitation */
+        .invitation-floral-left,
+        .invitation-floral-right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            opacity: 0.2;
+        }
+
+        .invitation-floral-left { left: 0; }
+        .invitation-floral-right { right: 0; transform: translateY(-50%) scaleX(-1); }
 
         /* ─── PHOTO GALLERY ─── */
         .gallery-section {
@@ -228,11 +425,12 @@
             overflow: hidden;
             margin-bottom: 16px;
             contain: layout style;
+            border-radius: 0;
         }
 
         .slideshow-track {
             display: flex;
-            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             will-change: transform;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
@@ -245,6 +443,7 @@
             overflow: hidden;
             contain: layout paint;
             backface-visibility: hidden;
+            position: relative;
         }
 
         .slide img {
@@ -254,6 +453,7 @@
             object-position: center center;
             image-rendering: auto;
             transform: translateZ(0);
+            transition: transform 0.6s ease;
         }
 
         .slideshow-nav {
@@ -269,13 +469,14 @@
             border-radius: 50%;
             background: var(--gold-light);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .dot.active {
             background: var(--gold);
-            width: 20px;
+            width: 24px;
             border-radius: 3px;
+            box-shadow: 0 0 8px rgba(201,169,110,0.4);
         }
 
         .gallery-grid {
@@ -290,6 +491,7 @@
             aspect-ratio: 1;
             overflow: hidden;
             cursor: pointer;
+            position: relative;
         }
 
         .gallery-thumb img {
@@ -297,12 +499,33 @@
             height: 100%;
             object-fit: cover;
             object-position: center center;
-            transition: transform 0.4s ease;
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .gallery-thumb::after {
+            content: '♥';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(92, 61, 46, 0.0);
+            color: rgba(255,255,255,0);
+            font-size: 22px;
+            transition: all 0.4s ease;
+            pointer-events: none;
         }
 
         .gallery-thumb:hover img,
         .gallery-thumb:active img {
-            transform: scale(1.05);
+            transform: scale(1.1);
+            filter: brightness(0.8);
+        }
+
+        .gallery-thumb:hover::after,
+        .gallery-thumb:active::after {
+            background: rgba(92, 61, 46, 0.25);
+            color: rgba(255,255,255,0.9);
         }
 
         /* ─── LIGHTBOX ─── */
@@ -314,10 +537,17 @@
             z-index: 1000;
             align-items: center;
             justify-content: center;
+            backdrop-filter: blur(8px);
         }
 
         .lightbox.open {
             display: flex;
+            animation: lbFadeIn 0.3s ease;
+        }
+
+        @keyframes lbFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .lightbox img {
@@ -325,6 +555,12 @@
             max-height: 90vh;
             object-fit: contain;
             border-radius: 4px;
+            animation: lbZoomIn 0.3s ease;
+        }
+
+        @keyframes lbZoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
         .lightbox-close {
@@ -344,8 +580,8 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
             width: 40px;
             height: 60px;
@@ -358,30 +594,42 @@
             transition: background 0.2s;
         }
 
-        .lightbox-prev {
-            left: 10px;
-        }
-
-        .lightbox-next {
-            right: 10px;
-        }
+        .lightbox-prev { left: 10px; }
+        .lightbox-next { right: 10px; }
 
         .lightbox-prev:hover,
         .lightbox-next:hover {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         /* ─── WEDDING INFO ─── */
         .info-card {
             background: #fff;
             border: 1px solid var(--gold-light);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 32px 24px;
             margin-bottom: 20px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.6;
+        }
 
+        .info-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(201, 169, 110, 0.12);
+        }
 
         .info-title {
             font-size: 11px;
@@ -404,33 +652,89 @@
             margin-top: 6px;
         }
 
-        .map-btn {
+        /* ─── SHIMMER BUTTONS ─── */
+        .shimmer-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             margin-top: 16px;
-            padding: 10px 24px;
-            background: var(--gold);
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-shimmer), var(--gold));
+            background-size: 200% 100%;
             color: #fff;
             border-radius: 100px;
             font-size: 13px;
             text-decoration: none;
             letter-spacing: 1px;
-            transition: background 0.2s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            font-family: 'Noto Serif KR', serif;
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: shimmerSlide 3s ease infinite;
+            position: relative;
+            overflow: hidden;
         }
 
-        .map-btn:active {
-            transform: scale(0.98);
-            background: var(--brown-light);
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255,255,255,0.15) 50%,
+                transparent 70%
+            );
+            animation: shimmerGlide 3s ease-in-out infinite;
         }
 
+        @keyframes shimmerSlide {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
 
+        @keyframes shimmerGlide {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .shimmer-btn:active {
+            transform: scale(0.97);
+            box-shadow: 0 2px 12px rgba(201,169,110,0.3);
+        }
+
+        /* ─── HEART FLOAT (FOOTER) ─── */
+        .heart-float-container {
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            height: 60px;
+        }
+
+        .heart-float {
+            display: inline-block;
+            color: var(--rose);
+            font-size: 16px;
+            animation: heartBeat 1.5s ease-in-out infinite;
+        }
+
+        .heart-float:nth-child(2) { animation-delay: 0.3s; font-size: 22px; }
+        .heart-float:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.15); opacity: 1; }
+        }
 
         /* ─── FOOTER ─── */
         footer {
             text-align: center;
             padding: 48px 24px;
-            border-top: 1px solid var(--gold-light);
+            border-top: none;
+            position: relative;
         }
 
         footer p {
@@ -439,13 +743,19 @@
             line-height: 2;
         }
 
+        footer .footer-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 26px;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+
         /* ─── ANIMATIONS ─── */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -453,21 +763,14 @@
         }
 
         @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-
-            50% {
-                transform: translateX(-50%) translateY(8px);
-            }
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
         }
 
         .fade-in {
             opacity: 0;
-            transform: translate3d(0, 16px, 0);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transform: translate3d(0, 20px, 0);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             will-change: opacity, transform;
         }
 
@@ -475,6 +778,11 @@
             opacity: 1;
             transform: translate3d(0, 0, 0);
         }
+
+        /* Stagger children animation */
+        .stagger-children .fade-in:nth-child(1) { transition-delay: 0s; }
+        .stagger-children .fade-in:nth-child(2) { transition-delay: 0.15s; }
+        .stagger-children .fade-in:nth-child(3) { transition-delay: 0.3s; }
 
         /* ─── NAMES COUPLE ─── */
         .names-couple {
@@ -512,6 +820,16 @@
         .couple-heart {
             font-size: 28px;
             color: var(--rose);
+            animation: heartBeat 1.5s ease-in-out infinite;
+        }
+
+        /* ─── CELEBRATION ACCOUNT ─── */
+        .account-box {
+            background: linear-gradient(135deg, var(--cream) 0%, #fef6ee 100%);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 8px;
+            border: 1px solid rgba(201,169,110,0.15);
         }
 
         /* ─── 음악 토글 버튼 ─── */
@@ -520,8 +838,8 @@
             top: 20px;
             right: 20px;
             z-index: 999;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             border: 1px solid var(--gold);
             background: rgba(26, 17, 12, 0.7);
@@ -542,18 +860,45 @@
 
         .music-btn.playing {
             animation: pulse-music 2s infinite;
+            border-color: var(--gold-shimmer);
         }
 
         @keyframes pulse-music {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(193, 154, 107, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(193, 154, 107, 0); }
+        }
 
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 rgba(193, 154, 107, 0.4);
-            }
+        /* ─── MUSIC VISUALIZER BARS ─── */
+        .music-bars {
+            display: none;
+            gap: 2px;
+            align-items: flex-end;
+            height: 14px;
+        }
 
-            50% {
-                box-shadow: 0 0 0 8px rgba(193, 154, 107, 0);
-            }
+        .music-btn.playing .music-bars {
+            display: flex;
+        }
+
+        .music-btn.playing .music-note {
+            display: none;
+        }
+
+        .music-bar {
+            width: 2.5px;
+            background: var(--gold-light);
+            border-radius: 1px;
+            animation: musicBarBounce 0.8s ease-in-out infinite alternate;
+        }
+
+        .music-bar:nth-child(1) { height: 6px; animation-delay: 0s; }
+        .music-bar:nth-child(2) { height: 10px; animation-delay: 0.15s; }
+        .music-bar:nth-child(3) { height: 4px; animation-delay: 0.3s; }
+        .music-bar:nth-child(4) { height: 8px; animation-delay: 0.1s; }
+
+        @keyframes musicBarBounce {
+            0% { transform: scaleY(0.4); }
+            100% { transform: scaleY(1.2); }
         }
     </style>
 </head>
@@ -564,12 +909,29 @@
     <audio id="bgMusic" loop preload="auto">
         <source src="music/canon-in-d.m4a" type="audio/mp4">
     </audio>
-    <button class="music-btn" id="musicBtn" onclick="toggleMusic()" aria-label="음악 켜기/끄기">♪</button>
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()" aria-label="음악 켜기/끄기">
+        <span class="music-note">♪</span>
+        <div class="music-bars">
+            <div class="music-bar"></div>
+            <div class="music-bar"></div>
+            <div class="music-bar"></div>
+            <div class="music-bar"></div>
+        </div>
+    </button>
+
+    <!-- ───────── PARTICLES ───────── -->
+    <div class="particles-container" id="particles"></div>
 
     <!-- ───────── HERO ───────── -->
     <section class="hero">
         <div class="hero-bg-photo"></div>
         <div class="hero-overlay"></div>
+        <div class="hero-bokeh">
+            <div class="bokeh-circle" style="width:120px;height:120px;top:15%;left:10%;animation-delay:0s;"></div>
+            <div class="bokeh-circle" style="width:80px;height:80px;top:30%;right:15%;animation-delay:1s;"></div>
+            <div class="bokeh-circle" style="width:150px;height:150px;bottom:30%;left:60%;animation-delay:2s;"></div>
+            <div class="bokeh-circle" style="width:60px;height:60px;top:60%;left:25%;animation-delay:0.5s;"></div>
+        </div>
         <div class="hero-content">
             <p class="hero-subtitle">We are getting married</p>
             <div class="hero-names">
@@ -580,13 +942,51 @@
             <div class="hero-divider">
                 <div class="hero-divider-diamond"></div>
             </div>
-            <p class="hero-date" style="text-align:center; width:100%;">2026 · 03 · 07</p>
+            <p class="hero-date" style="text-align:center; width:100%;">2026 · 03 · 07 · SAT</p>
         </div>
         <div class="scroll-hint">
             <span>SCROLL</span>
             <div class="scroll-arrow"></div>
         </div>
     </section>
+
+    <!-- ───────── 카운트다운 ───────── -->
+    <div class="countdown-section fade-in">
+        <p class="countdown-label">Until Our Day</p>
+        <div class="countdown-grid" id="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="cd-days">--</span>
+                <span class="countdown-unit">Days</span>
+            </div>
+            <div class="countdown-separator">:</div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="cd-hours">--</span>
+                <span class="countdown-unit">Hours</span>
+            </div>
+            <div class="countdown-separator">:</div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="cd-mins">--</span>
+                <span class="countdown-unit">Mins</span>
+            </div>
+            <div class="countdown-separator">:</div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="cd-secs">--</span>
+                <span class="countdown-unit">Secs</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ───────── 장식 디바이더 ───────── -->
+    <div class="floral-divider">
+        <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 5 C85 5 80 20 100 35 C120 20 115 5 100 5Z" fill="none" stroke="#c9a96e" stroke-width="0.8"/>
+            <path d="M70 18 Q85 10 100 20 Q115 10 130 18" fill="none" stroke="#c9a96e" stroke-width="0.6"/>
+            <circle cx="60" cy="20" r="2" fill="#c9a96e" opacity="0.5"/>
+            <circle cx="140" cy="20" r="2" fill="#c9a96e" opacity="0.5"/>
+            <path d="M40 20 L55 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.4"/>
+            <path d="M145 20 L160 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.4"/>
+        </svg>
+    </div>
 
     <!-- ───────── 초대 문구 ───────── -->
     <section class="invitation-section fade-in">
@@ -624,6 +1024,18 @@
         </div>
     </section>
 
+    <!-- ───────── 장식 디바이더 ───────── -->
+    <div class="floral-divider">
+        <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M90 20 Q95 10 100 20 Q105 10 110 20" fill="none" stroke="#c9a96e" stroke-width="0.8"/>
+            <path d="M80 20 Q90 28 100 20 Q110 28 120 20" fill="none" stroke="#c9a96e" stroke-width="0.6"/>
+            <circle cx="75" cy="20" r="1.5" fill="#c9a96e" opacity="0.4"/>
+            <circle cx="125" cy="20" r="1.5" fill="#c9a96e" opacity="0.4"/>
+            <path d="M40 20 L70 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.3"/>
+            <path d="M130 20 L160 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.3"/>
+        </svg>
+    </div>
+
     <!-- ───────── 포토 갤러리 ───────── -->
     <section class="gallery-section">
         <p class="section-label fade-in">Our Story · Gallery</p>
@@ -634,24 +1046,17 @@
         <div class="slideshow-container">
             <div class="slideshow-track" id="slideshowTrack">
                 <div class="slide"><img src="images/KakaoTalk_20260220_131313890_01.jpg" alt="사진1" loading="eager"
-                        decoding="async" />
-                </div>
+                        decoding="async" /></div>
                 <div class="slide"><img src="images/KakaoTalk_20260220_131313890_02.jpg" alt="사진2" loading="lazy"
-                        decoding="async" />
-                </div>
-
+                        decoding="async" /></div>
                 <div class="slide"><img src="images/KakaoTalk_20260220_131313890_04.jpg" alt="사진4" loading="lazy"
-                        decoding="async" />
-                </div>
+                        decoding="async" /></div>
                 <div class="slide"><img src="images/KakaoTalk_20260220_131313890_05.jpg" alt="사진5" loading="lazy"
-                        decoding="async" />
-                </div>
+                        decoding="async" /></div>
                 <div class="slide"><img src="images/KakaoTalk_20260220_131313890_06.jpg" alt="사진6" loading="lazy"
-                        decoding="async" />
-                </div>
+                        decoding="async" /></div>
                 <div class="slide"><img src="images/KakaoTalk_20260220_131313890_07.jpg" alt="사진7" loading="lazy"
-                        decoding="async" />
-                </div>
+                        decoding="async" /></div>
                 <div class="slide"><img src="images/KakaoTalk_20260220_131323154.jpg" alt="사진8" loading="lazy"
                         decoding="async" /></div>
                 <div class="slide"><img src="images/KakaoTalk_20260220_131335604.jpg" alt="사진9" loading="lazy"
@@ -665,47 +1070,56 @@
         <!-- 썸네일 그리드 -->
         <div class="gallery-grid" style="margin-top:20px;">
             <div class="gallery-thumb" onclick="openLightbox(0)"><img src="images/KakaoTalk_20260220_131313890_01.jpg"
-                    alt="" /></div>
+                    alt="" loading="lazy" /></div>
             <div class="gallery-thumb" onclick="openLightbox(1)"><img src="images/KakaoTalk_20260220_131313890_02.jpg"
-                    alt="" /></div>
+                    alt="" loading="lazy" /></div>
             <div class="gallery-thumb" onclick="openLightbox(2)"><img src="images/KakaoTalk_20260220_131313890_04.jpg"
-                    alt="" /></div>
+                    alt="" loading="lazy" /></div>
             <div class="gallery-thumb" onclick="openLightbox(3)"><img src="images/KakaoTalk_20260220_131313890_05.jpg"
-                    alt="" /></div>
+                    alt="" loading="lazy" /></div>
             <div class="gallery-thumb" onclick="openLightbox(4)"><img src="images/KakaoTalk_20260220_131313890_06.jpg"
-                    alt="" /></div>
+                    alt="" loading="lazy" /></div>
             <div class="gallery-thumb" onclick="openLightbox(5)"><img src="images/KakaoTalk_20260220_131313890_07.jpg"
-                    alt="" /></div>
+                    alt="" loading="lazy" /></div>
             <div class="gallery-thumb" onclick="openLightbox(6)"><img src="images/KakaoTalk_20260220_131323154.jpg"
-                    alt="" /></div>
+                    alt="" loading="lazy" /></div>
             <div class="gallery-thumb" onclick="openLightbox(7)"><img src="images/KakaoTalk_20260220_131335604.jpg"
-                    alt="" /></div>
+                    alt="" loading="lazy" /></div>
             <div class="gallery-thumb" onclick="openLightbox(8)"><img src="images/KakaoTalk_20260220_162103321.jpg"
-                    alt="" /></div>
+                    alt="" loading="lazy" /></div>
         </div>
     </section>
 
+    <!-- ───────── 장식 디바이더 ───────── -->
+    <div class="floral-divider">
+        <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 5 C85 5 80 20 100 35 C120 20 115 5 100 5Z" fill="none" stroke="#c9a96e" stroke-width="0.8"/>
+            <path d="M70 18 Q85 10 100 20 Q115 10 130 18" fill="none" stroke="#c9a96e" stroke-width="0.6"/>
+            <circle cx="60" cy="20" r="2" fill="#c9a96e" opacity="0.5"/>
+            <circle cx="140" cy="20" r="2" fill="#c9a96e" opacity="0.5"/>
+            <path d="M40 20 L55 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.4"/>
+            <path d="M145 20 L160 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.4"/>
+        </svg>
+    </div>
+
     <!-- ───────── 예식 정보 ───────── -->
-    <section class="fade-in">
+    <section class="fade-in stagger-children">
         <p class="section-label">Wedding Day</p>
         <div class="gold-line"></div>
         <br />
-        <div class="info-card">
-
+        <div class="info-card fade-in">
             <div class="info-title">일 시</div>
             <div class="info-value">2026년 3월 7일 토요일</div>
             <div class="info-sub">오후 4시 30분</div>
         </div>
-        <div class="info-card">
-
+        <div class="info-card fade-in">
             <div class="info-title">장 소</div>
             <div class="info-value">셀레네 하우스 웨딩</div>
             <div class="info-sub">충청남도 천안시 동남구 배울1길 35</div>
-            <a href="https://map.kakao.com/link/map/셀레네 하우스 웨딩,36.8068,127.1519" target="_blank" class="map-btn">카카오맵으로
-                보기</a>
+            <a href="https://map.kakao.com/link/map/셀레네 하우스 웨딩,36.8068,127.1519" target="_blank"
+                class="shimmer-btn">📍 카카오맵으로 보기</a>
         </div>
-        <div class="info-card" style="background:var(--cream);">
-
+        <div class="info-card fade-in" style="background:var(--cream);">
             <div class="info-title">오시는 길</div>
             <div class="info-sub" style="font-size:14px;line-height:2;">
                 <strong style="color:var(--brown);">주소</strong><br />
@@ -716,7 +1130,17 @@
         </div>
     </section>
 
-
+    <!-- ───────── 장식 디바이더 ───────── -->
+    <div class="floral-divider">
+        <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M90 20 Q95 10 100 20 Q105 10 110 20" fill="none" stroke="#c9a96e" stroke-width="0.8"/>
+            <path d="M80 20 Q90 28 100 20 Q110 28 120 20" fill="none" stroke="#c9a96e" stroke-width="0.6"/>
+            <circle cx="75" cy="20" r="1.5" fill="#c9a96e" opacity="0.4"/>
+            <circle cx="125" cy="20" r="1.5" fill="#c9a96e" opacity="0.4"/>
+            <path d="M40 20 L70 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.3"/>
+            <path d="M130 20 L160 20" stroke="#c9a96e" stroke-width="0.4" opacity="0.3"/>
+        </svg>
+    </div>
 
     <!-- ───────── 축의금 안내 ───────── -->
     <section class="fade-in">
@@ -725,37 +1149,27 @@
         <br />
         <div class="info-card">
             <div class="info-title">마음 전하실 곳</div>
-
-            <div style="background:var(--cream);border-radius:8px;padding:20px;margin-top:8px;">
+            <div class="account-box">
                 <div style="font-size:13px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;">신 랑 측</div>
                 <div style="font-size:16px;color:var(--brown);font-weight:600;">우리은행</div>
                 <div style="font-size:18px;color:var(--text);margin:6px 0;letter-spacing:1px;" id="accountNumber">
                     1002-154-290921</div>
                 <div style="font-size:13px;color:var(--text-light);">예금주: 김종필</div>
-                <button onclick="copyAccount()" style="
-                    margin-top:14px;
-                    padding:8px 24px;
-                    background:var(--gold);
-                    color:#fff;
-                    border:none;
-                    border-radius:100px;
-                    font-size:13px;
-                    font-family:'Noto Serif KR',serif;
-                    letter-spacing:1px;
-                    cursor:pointer;
-                    transition:background 0.2s,transform 0.2s;
-                " id="copyBtn">계좌번호 복사</button>
+                <button onclick="copyAccount()" class="shimmer-btn" id="copyBtn">💳 계좌번호 복사</button>
             </div>
         </div>
     </section>
 
     <!-- ───────── FOOTER ───────── -->
     <footer class="fade-in">
-        <p>· · ·</p>
-        <br />
+        <div class="heart-float-container">
+            <span class="heart-float">♥</span>
+            <span class="heart-float">♥</span>
+            <span class="heart-float">♥</span>
+        </div>
+        <p class="footer-names">Jongpil & Yeonju</p>
         <p>
-            종필 ♥ 연주<br />
-            <span style="color:var(--gold);">2026 · 03 · 07</span>
+            <span style="color:var(--gold);letter-spacing:3px;">2026 · 03 · 07</span>
         </p>
         <br />
         <p style="font-size:11px;color:#bbb;">
@@ -776,7 +1190,6 @@
         const photos = [
             'images/KakaoTalk_20260220_131313890_01.jpg',
             'images/KakaoTalk_20260220_131313890_02.jpg',
-
             'images/KakaoTalk_20260220_131313890_04.jpg',
             'images/KakaoTalk_20260220_131313890_05.jpg',
             'images/KakaoTalk_20260220_131313890_06.jpg',
@@ -823,7 +1236,7 @@
 
         /* 터치 스와이프 */
         let touchStartX = 0;
-        track.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; stopAuto(); });
+        track.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; stopAuto(); }, { passive: true });
         track.addEventListener('touchend', e => {
             const dx = e.changedTouches[0].clientX - touchStartX;
             if (Math.abs(dx) > 40) goSlide(currentSlide + (dx < 0 ? 1 : -1));
@@ -847,7 +1260,12 @@
         }
         function lightboxNav(dir) {
             lbIndex = (lbIndex + dir + photos.length) % photos.length;
-            document.getElementById('lightboxImg').src = photos[lbIndex];
+            const img = document.getElementById('lightboxImg');
+            img.style.opacity = '0';
+            setTimeout(() => {
+                img.src = photos[lbIndex];
+                img.style.opacity = '1';
+            }, 150);
         }
         document.addEventListener('keydown', e => {
             if (!document.getElementById('lightbox').classList.contains('open')) return;
@@ -856,18 +1274,14 @@
             if (e.key === 'Escape') closeLightbox();
         });
 
-
-
         /* ── 계좌번호 복사 ── */
         function copyAccount() {
             const num = '1002-154-290921';
             navigator.clipboard.writeText(num).then(() => {
                 const btn = document.getElementById('copyBtn');
                 btn.textContent = '✓ 복사완료';
-                btn.style.background = 'var(--brown)';
                 setTimeout(() => {
-                    btn.textContent = '계좌번호 복사';
-                    btn.style.background = 'var(--gold)';
+                    btn.textContent = '💳 계좌번호 복사';
                 }, 2000);
             });
         }
@@ -875,8 +1289,9 @@
         /* ── 스크롤 페이드인 ── */
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
         /* ── 배경 음악 ── */
         const bgMusic = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicBtn');
@@ -887,11 +1302,9 @@
         function toggleMusic() {
             if (isMusicPlaying) {
                 bgMusic.pause();
-                musicBtn.textContent = '♪';
                 musicBtn.classList.remove('playing');
             } else {
                 bgMusic.play().then(() => {
-                    musicBtn.textContent = '♫';
                     musicBtn.classList.add('playing');
                 }).catch(() => { });
             }
@@ -903,12 +1316,78 @@
             if (!isMusicPlaying) {
                 bgMusic.play().then(() => {
                     isMusicPlaying = true;
-                    musicBtn.textContent = '♫';
                     musicBtn.classList.add('playing');
                 }).catch(() => { });
             }
             document.removeEventListener('click', autoPlay);
         }, { once: true });
+
+        /* ── 카운트다운 타이머 ── */
+        const weddingDate = new Date('2026-03-07T16:30:00+09:00');
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = weddingDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('cd-days').textContent = '0';
+                document.getElementById('cd-hours').textContent = '0';
+                document.getElementById('cd-mins').textContent = '0';
+                document.getElementById('cd-secs').textContent = '0';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('cd-days').textContent = days;
+            document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+            document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        /* ── 플로팅 파티클 생성 ── */
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const types = ['particle-petal', 'particle-sparkle'];
+
+            for (let i = 0; i < 15; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle ' + types[Math.random() > 0.4 ? 1 : 0];
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDuration = (8 + Math.random() * 12) + 's';
+                p.style.animationDelay = (Math.random() * 10) + 's';
+                container.appendChild(p);
+            }
+        }
+
+        createParticles();
+
+        /* ── 히어로 스크롤 패럴렉스 ── */
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    const hero = document.querySelector('.hero-bg-photo');
+                    if (scrollY < window.innerHeight) {
+                        hero.style.transform = `scale(${1 + scrollY * 0.0001}) translateY(${scrollY * 0.3}px)`;
+                    }
+                    // Fade out scroll hint
+                    const hint = document.querySelector('.scroll-hint');
+                    if (hint) {
+                        hint.style.opacity = Math.max(0, 1 - scrollY / 200);
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
     </script>
 </body>
 
