@@ -229,7 +229,8 @@
 
         .slideshow-track {
             display: flex;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.4s ease-out;
+            will-change: transform;
         }
 
         .slide {
@@ -370,10 +371,7 @@
             text-align: center;
         }
 
-        .info-icon {
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
+
 
         .info-title {
             font-size: 11px;
@@ -416,65 +414,7 @@
             background: var(--brown-light);
         }
 
-        /* ─── ACCOUNT ─── */
-        .account-section {
-            background: var(--rose-light);
-            border-top: 1px solid var(--rose);
-            border-bottom: 1px solid var(--rose);
-        }
 
-        .account-box {
-            background: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 12px;
-        }
-
-        .account-label {
-            font-size: 12px;
-            color: var(--text-light);
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        .account-number {
-            font-size: 16px;
-            color: var(--brown);
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .account-bank {
-            font-size: 12px;
-            color: var(--text-light);
-            margin-top: 4px;
-        }
-
-        .copy-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 12px;
-            padding: 8px 18px;
-            background: var(--cream);
-            border: 1px solid var(--gold-light);
-            border-radius: 100px;
-            font-size: 12px;
-            color: var(--brown);
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
-        }
-
-        .copy-btn:active {
-            background: var(--gold-light);
-        }
-
-        .copy-btn.copied {
-            background: var(--gold);
-            color: #fff;
-            border-color: var(--gold);
-        }
 
         /* ─── FOOTER ─── */
         footer {
@@ -516,13 +456,14 @@
 
         .fade-in {
             opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translate3d(0, 16px, 0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            will-change: opacity, transform;
         }
 
         .fade-in.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translate3d(0, 0, 0);
         }
 
         /* ─── NAMES COUPLE ─── */
@@ -681,13 +622,13 @@
         <div class="gold-line"></div>
         <br />
         <div class="info-card">
-            <div class="info-icon">📅</div>
+
             <div class="info-title">일 시</div>
             <div class="info-value">2026년 3월 7일 토요일</div>
             <div class="info-sub">오후 4시 30분</div>
         </div>
         <div class="info-card">
-            <div class="info-icon">🏛️</div>
+
             <div class="info-title">장 소</div>
             <div class="info-value">셀레네 하우스 웨딩</div>
             <div class="info-sub">충청남도 천안시 동남구 배울1길 35</div>
@@ -695,7 +636,7 @@
                 카카오맵으로 보기</a>
         </div>
         <div class="info-card" style="background:var(--cream);">
-            <div class="info-icon">🚗</div>
+
             <div class="info-title">오시는 길</div>
             <div class="info-sub" style="font-size:14px;line-height:2;">
                 <strong style="color:var(--brown);">주소</strong><br />
@@ -706,24 +647,7 @@
         </div>
     </section>
 
-    <!-- ───────── 마음 전하기 ───────── -->
-    <section class="account-section fade-in">
-        <p class="section-label">마음 전하기</p>
-        <div class="gold-line"></div>
-        <br />
-        <div class="account-box">
-            <div class="account-label">🤵 신랑 측</div>
-            <div class="account-number">○○은행 000-000-000000</div>
-            <div class="account-bank">예금주: 김종필</div>
-            <button class="copy-btn" onclick="copyAccount(this, '000-000-000000')">📋 계좌번호 복사</button>
-        </div>
-        <div class="account-box">
-            <div class="account-label">👰 신부 측</div>
-            <div class="account-number">○○은행 000-000-000000</div>
-            <div class="account-bank">예금주: ○○○</div>
-            <button class="copy-btn" onclick="copyAccount(this, '000-000-000000')">📋 계좌번호 복사</button>
-        </div>
-    </section>
+
 
     <!-- ───────── FOOTER ───────── -->
     <footer class="fade-in">
@@ -831,19 +755,7 @@
             if (e.key === 'Escape') closeLightbox();
         });
 
-        /* ── 계좌 복사 ── */
-        function copyAccount(btn, num) {
-            navigator.clipboard.writeText(num).then(() => {
-                btn.classList.add('copied');
-                btn.textContent = '✅ 복사 완료!';
-                setTimeout(() => {
-                    btn.classList.remove('copied');
-                    btn.textContent = '📋 계좌번호 복사';
-                }, 2000);
-            }).catch(() => {
-                alert('복사 기능을 지원하지 않는 브라우저입니다.\n' + num);
-            });
-        }
+
 
         /* ── 스크롤 페이드인 ── */
         const observer = new IntersectionObserver(entries => {
